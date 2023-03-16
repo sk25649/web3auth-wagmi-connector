@@ -1,6 +1,6 @@
 import { Address, Connector, ConnectorData, normalizeChainId, UserRejectedRequestError } from "@wagmi/core";
 import { Chain } from "@wagmi/core/chains";
-import { ADAPTER_STATUS, CHAIN_NAMESPACES, IWeb3Auth, SafeEventEmitterProvider, WALLET_ADAPTER_TYPE, WALLET_ADAPTERS } from "@web3auth/base";
+import pkg, { IWeb3Auth, SafeEventEmitterProvider, WALLET_ADAPTER_TYPE } from "@web3auth/base";
 import type { IWeb3AuthModal, ModalConfig } from "@web3auth/modal";
 import type { OpenloginLoginParams } from "@web3auth/openlogin-adapter";
 import { providers, Signer, utils } from "ethers";
@@ -8,6 +8,7 @@ import log from "loglevel";
 
 import type { Options } from "./interfaces";
 
+const { ADAPTER_STATUS, WALLET_ADAPTERS, CHAIN_NAMESPACES } = pkg;
 const IS_SERVER = typeof window === "undefined";
 
 function isIWeb3AuthModal(obj: IWeb3Auth | IWeb3AuthModal): obj is IWeb3AuthModal {
@@ -155,7 +156,9 @@ export class Web3AuthConnector extends Connector<SafeEventEmitterProvider, Optio
         tickerName: chain.nativeCurrency?.name || "Ethereum",
         decimals: chain.nativeCurrency.decimals || 18,
       });
-      await this.web3AuthInstance.switchChain({ chainId: `0x${chain.id.toString(16)}` });
+      await this.web3AuthInstance.switchChain({
+        chainId: `0x${chain.id.toString(16)}`,
+      });
       return chain;
     } catch (error) {
       log.error("Error: Cannot change chain", error);

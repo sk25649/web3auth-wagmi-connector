@@ -18,6 +18,7 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty_n
 const core_namespaceObject = require("@wagmi/core");
 ;// CONCATENATED MODULE: external "@web3auth/base"
 const base_namespaceObject = require("@web3auth/base");
+var base_default = /*#__PURE__*/__webpack_require__.n(base_namespaceObject);
 ;// CONCATENATED MODULE: external "ethers"
 const external_ethers_namespaceObject = require("ethers");
 ;// CONCATENATED MODULE: external "loglevel"
@@ -29,6 +30,11 @@ var external_loglevel_default = /*#__PURE__*/__webpack_require__.n(external_logl
 
 
 
+const {
+  ADAPTER_STATUS,
+  WALLET_ADAPTERS,
+  CHAIN_NAMESPACES
+} = (base_default());
 const IS_SERVER = typeof window === "undefined";
 function isIWeb3AuthModal(obj) {
   return typeof obj.initModal !== "undefined";
@@ -61,7 +67,7 @@ class Web3AuthConnector extends core_namespaceObject.Connector {
       this.emit("message", {
         type: "connecting"
       });
-      if (this.web3AuthInstance.status === base_namespaceObject.ADAPTER_STATUS.NOT_READY) {
+      if (this.web3AuthInstance.status === ADAPTER_STATUS.NOT_READY) {
         if (isIWeb3AuthModal(this.web3AuthInstance)) {
           await this.web3AuthInstance.initModal({
             modalConfig: this.modalConfig
@@ -80,7 +86,7 @@ class Web3AuthConnector extends core_namespaceObject.Connector {
         if (isIWeb3AuthModal(this.web3AuthInstance)) {
           provider = await this.web3AuthInstance.connect();
         } else if (this.loginParams) {
-          provider = await this.web3AuthInstance.connectTo(base_namespaceObject.WALLET_ADAPTERS.OPENLOGIN, this.loginParams);
+          provider = await this.web3AuthInstance.connectTo(WALLET_ADAPTERS.OPENLOGIN, this.loginParams);
         } else {
           external_loglevel_default().error("please provide a valid loginParams when not using @web3auth/modal");
           throw new core_namespaceObject.UserRejectedRequestError("please provide a valid loginParams when not using @web3auth/modal");
@@ -158,7 +164,7 @@ class Web3AuthConnector extends core_namespaceObject.Connector {
       const provider = await this.getProvider();
       if (!provider) throw new Error("Please login first");
       await this.web3AuthInstance.addChain({
-        chainNamespace: base_namespaceObject.CHAIN_NAMESPACES.EIP155,
+        chainNamespace: CHAIN_NAMESPACES.EIP155,
         chainId: `0x${chain.id.toString(16)}`,
         rpcTarget: chain.rpcUrls.default.http[0],
         displayName: chain.name,
