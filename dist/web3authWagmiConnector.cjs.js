@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 210:
+/***/ 285:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -16,9 +16,6 @@ const defineProperty_namespaceObject = require("@babel/runtime/helpers/definePro
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty_namespaceObject);
 ;// CONCATENATED MODULE: external "@wagmi/core"
 const core_namespaceObject = require("@wagmi/core");
-;// CONCATENATED MODULE: external "@web3auth/base"
-const base_namespaceObject = require("@web3auth/base");
-var base_default = /*#__PURE__*/__webpack_require__.n(base_namespaceObject);
 ;// CONCATENATED MODULE: external "ethers"
 const external_ethers_namespaceObject = require("ethers");
 ;// CONCATENATED MODULE: external "loglevel"
@@ -29,12 +26,6 @@ var external_loglevel_default = /*#__PURE__*/__webpack_require__.n(external_logl
 
 
 
-
-const {
-  ADAPTER_STATUS,
-  WALLET_ADAPTERS,
-  CHAIN_NAMESPACES
-} = (base_default());
 const IS_SERVER = typeof window === "undefined";
 function isIWeb3AuthModal(obj) {
   return typeof obj.initModal !== "undefined";
@@ -294,7 +285,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Web3AuthConnector": () => (/* reexport safe */ _lib_connector__WEBPACK_IMPORTED_MODULE_0__.a)
 /* harmony export */ });
-/* harmony import */ var _lib_connector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(210);
+/* harmony import */ var _lib_connector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(285);
 /* harmony import */ var _lib_interfaces__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(470);
 /* harmony import */ var _lib_interfaces__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_lib_interfaces__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
