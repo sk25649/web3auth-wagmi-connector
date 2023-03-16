@@ -96,7 +96,7 @@ class Web3AuthConnector extends core_namespaceObject.Connector {
       this.emit("message", {
         type: "connecting"
       });
-      if (this.web3AuthInstance.status === ADAPTER_STATUS.NOT_READY) {
+      if (this.web3AuthInstance.status === "not_ready") {
         if (isIWeb3AuthModal(this.web3AuthInstance)) {
           await this.web3AuthInstance.initModal({
             modalConfig: this.modalConfig
