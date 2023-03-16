@@ -1,6 +1,6 @@
 import { Address, Connector, ConnectorData, normalizeChainId, UserRejectedRequestError } from "@wagmi/core";
 import { Chain } from "@wagmi/core/chains";
-import pkg, { IWeb3Auth, SafeEventEmitterProvider, WALLET_ADAPTER_TYPE } from "@web3auth/base";
+import { IWeb3Auth, SafeEventEmitterProvider, WALLET_ADAPTER_TYPE } from "@web3auth/base";
 import type { IWeb3AuthModal, ModalConfig } from "@web3auth/modal";
 import type { OpenloginLoginParams } from "@web3auth/openlogin-adapter";
 import { providers, Signer, utils } from "ethers";
@@ -8,13 +8,39 @@ import log from "loglevel";
 
 import type { Options } from "./interfaces";
 
-const { ADAPTER_STATUS, WALLET_ADAPTERS, CHAIN_NAMESPACES } = pkg;
 const IS_SERVER = typeof window === "undefined";
 
 function isIWeb3AuthModal(obj: IWeb3Auth | IWeb3AuthModal): obj is IWeb3AuthModal {
   return typeof (obj as IWeb3AuthModal).initModal !== "undefined";
 }
 
+export declare const ADAPTER_STATUS: {
+  readonly NOT_READY: "not_ready";
+  readonly READY: "ready";
+  readonly CONNECTING: "connecting";
+  readonly CONNECTED: "connected";
+  readonly DISCONNECTED: "disconnected";
+  readonly ERRORED: "errored";
+};
+
+export declare const WALLET_ADAPTERS: {
+  OPENLOGIN: string;
+  WALLET_CONNECT_V1: string;
+  WALLET_CONNECT_V2: string;
+  TORUS_SOLANA: string;
+  PHANTOM: string;
+  SOLFLARE: string;
+  SLOPE: string;
+  TORUS_EVM: string;
+  METAMASK: string;
+  COINBASE: string;
+};
+
+export declare const CHAIN_NAMESPACES: {
+  readonly EIP155: "eip155";
+  readonly SOLANA: "solana";
+  readonly OTHER: "other";
+};
 export class Web3AuthConnector extends Connector<SafeEventEmitterProvider, Options, Signer> {
   ready = !IS_SERVER;
 
