@@ -8,7 +8,13 @@
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "a": () => (/* binding */ Web3AuthConnector)
+  "MP": () => (/* binding */ ADAPTER_STATUS),
+  "EN": () => (/* binding */ CHAIN_NAMESPACES),
+  "$z": () => (/* binding */ EVM_ADAPTERS),
+  "kC": () => (/* binding */ MULTI_CHAIN_ADAPTERS),
+  "hf": () => (/* binding */ SOLANA_ADAPTERS),
+  "rW": () => (/* binding */ WALLET_ADAPTERS),
+  "aG": () => (/* binding */ Web3AuthConnector)
 });
 
 ;// CONCATENATED MODULE: external "@babel/runtime/helpers/defineProperty"
@@ -23,6 +29,8 @@ const external_loglevel_namespaceObject = require("loglevel");
 var external_loglevel_default = /*#__PURE__*/__webpack_require__.n(external_loglevel_namespaceObject);
 ;// CONCATENATED MODULE: ./src/lib/connector.ts
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { defineProperty_default()(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 
 
@@ -30,6 +38,36 @@ const IS_SERVER = typeof window === "undefined";
 function isIWeb3AuthModal(obj) {
   return typeof obj.initModal !== "undefined";
 }
+const ADAPTER_STATUS = {
+  NOT_READY: "not_ready",
+  READY: "ready",
+  CONNECTING: "connecting",
+  CONNECTED: "connected",
+  DISCONNECTED: "disconnected",
+  ERRORED: "errored"
+};
+const MULTI_CHAIN_ADAPTERS = {
+  OPENLOGIN: "openlogin",
+  WALLET_CONNECT_V1: "wallet-connect-v1",
+  WALLET_CONNECT_V2: "wallet-connect-v2"
+};
+const SOLANA_ADAPTERS = _objectSpread({
+  TORUS_SOLANA: "torus-solana",
+  PHANTOM: "phantom",
+  SOLFLARE: "solflare",
+  SLOPE: "slope"
+}, MULTI_CHAIN_ADAPTERS);
+const EVM_ADAPTERS = _objectSpread({
+  TORUS_EVM: "torus-evm",
+  METAMASK: "metamask",
+  COINBASE: "coinbase"
+}, MULTI_CHAIN_ADAPTERS);
+const WALLET_ADAPTERS = _objectSpread(_objectSpread({}, EVM_ADAPTERS), SOLANA_ADAPTERS);
+const CHAIN_NAMESPACES = {
+  EIP155: "eip155",
+  SOLANA: "solana",
+  OTHER: "other"
+};
 class Web3AuthConnector extends core_namespaceObject.Connector {
   constructor(_ref) {
     let {
@@ -283,13 +321,19 @@ var __webpack_exports__ = {};
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Web3AuthConnector": () => (/* reexport safe */ _lib_connector__WEBPACK_IMPORTED_MODULE_0__.a)
+/* harmony export */   "ADAPTER_STATUS": () => (/* reexport safe */ _lib_connector__WEBPACK_IMPORTED_MODULE_0__.MP),
+/* harmony export */   "CHAIN_NAMESPACES": () => (/* reexport safe */ _lib_connector__WEBPACK_IMPORTED_MODULE_0__.EN),
+/* harmony export */   "EVM_ADAPTERS": () => (/* reexport safe */ _lib_connector__WEBPACK_IMPORTED_MODULE_0__.$z),
+/* harmony export */   "MULTI_CHAIN_ADAPTERS": () => (/* reexport safe */ _lib_connector__WEBPACK_IMPORTED_MODULE_0__.kC),
+/* harmony export */   "SOLANA_ADAPTERS": () => (/* reexport safe */ _lib_connector__WEBPACK_IMPORTED_MODULE_0__.hf),
+/* harmony export */   "WALLET_ADAPTERS": () => (/* reexport safe */ _lib_connector__WEBPACK_IMPORTED_MODULE_0__.rW),
+/* harmony export */   "Web3AuthConnector": () => (/* reexport safe */ _lib_connector__WEBPACK_IMPORTED_MODULE_0__.aG)
 /* harmony export */ });
 /* harmony import */ var _lib_connector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(285);
 /* harmony import */ var _lib_interfaces__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(470);
 /* harmony import */ var _lib_interfaces__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_lib_interfaces__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _lib_interfaces__WEBPACK_IMPORTED_MODULE_1__) if(["default","Web3AuthConnector"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _lib_interfaces__WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _lib_interfaces__WEBPACK_IMPORTED_MODULE_1__) if(["default","ADAPTER_STATUS","CHAIN_NAMESPACES","EVM_ADAPTERS","MULTI_CHAIN_ADAPTERS","SOLANA_ADAPTERS","WALLET_ADAPTERS","Web3AuthConnector"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _lib_interfaces__WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
 /* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 

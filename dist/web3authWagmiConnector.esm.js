@@ -3,10 +3,42 @@ import { Connector, UserRejectedRequestError, normalizeChainId } from '@wagmi/co
 import { providers, utils } from 'ethers';
 import log from 'loglevel';
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 const IS_SERVER = typeof window === "undefined";
 function isIWeb3AuthModal(obj) {
   return typeof obj.initModal !== "undefined";
 }
+const ADAPTER_STATUS = {
+  NOT_READY: "not_ready",
+  READY: "ready",
+  CONNECTING: "connecting",
+  CONNECTED: "connected",
+  DISCONNECTED: "disconnected",
+  ERRORED: "errored"
+};
+const MULTI_CHAIN_ADAPTERS = {
+  OPENLOGIN: "openlogin",
+  WALLET_CONNECT_V1: "wallet-connect-v1",
+  WALLET_CONNECT_V2: "wallet-connect-v2"
+};
+const SOLANA_ADAPTERS = _objectSpread({
+  TORUS_SOLANA: "torus-solana",
+  PHANTOM: "phantom",
+  SOLFLARE: "solflare",
+  SLOPE: "slope"
+}, MULTI_CHAIN_ADAPTERS);
+const EVM_ADAPTERS = _objectSpread({
+  TORUS_EVM: "torus-evm",
+  METAMASK: "metamask",
+  COINBASE: "coinbase"
+}, MULTI_CHAIN_ADAPTERS);
+const WALLET_ADAPTERS = _objectSpread(_objectSpread({}, EVM_ADAPTERS), SOLANA_ADAPTERS);
+const CHAIN_NAMESPACES = {
+  EIP155: "eip155",
+  SOLANA: "solana",
+  OTHER: "other"
+};
 class Web3AuthConnector extends Connector {
   constructor(_ref) {
     let {
@@ -177,5 +209,5 @@ class Web3AuthConnector extends Connector {
   }
 }
 
-export { Web3AuthConnector };
+export { ADAPTER_STATUS, CHAIN_NAMESPACES, EVM_ADAPTERS, MULTI_CHAIN_ADAPTERS, SOLANA_ADAPTERS, WALLET_ADAPTERS, Web3AuthConnector };
 //# sourceMappingURL=web3authWagmiConnector.esm.js.map

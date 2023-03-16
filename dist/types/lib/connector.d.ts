@@ -13,6 +13,28 @@ export declare const ADAPTER_STATUS: {
     readonly DISCONNECTED: "disconnected";
     readonly ERRORED: "errored";
 };
+export declare const MULTI_CHAIN_ADAPTERS: {
+    OPENLOGIN: string;
+    WALLET_CONNECT_V1: string;
+    WALLET_CONNECT_V2: string;
+};
+export declare const SOLANA_ADAPTERS: {
+    OPENLOGIN: string;
+    WALLET_CONNECT_V1: string;
+    WALLET_CONNECT_V2: string;
+    TORUS_SOLANA: string;
+    PHANTOM: string;
+    SOLFLARE: string;
+    SLOPE: string;
+};
+export declare const EVM_ADAPTERS: {
+    OPENLOGIN: string;
+    WALLET_CONNECT_V1: string;
+    WALLET_CONNECT_V2: string;
+    TORUS_EVM: string;
+    METAMASK: string;
+    COINBASE: string;
+};
 export declare const WALLET_ADAPTERS: {
     OPENLOGIN: string;
     WALLET_CONNECT_V1: string;

@@ -14,33 +14,46 @@ function isIWeb3AuthModal(obj: IWeb3Auth | IWeb3AuthModal): obj is IWeb3AuthModa
   return typeof (obj as IWeb3AuthModal).initModal !== "undefined";
 }
 
-export declare const ADAPTER_STATUS: {
-  readonly NOT_READY: "not_ready";
-  readonly READY: "ready";
-  readonly CONNECTING: "connecting";
-  readonly CONNECTED: "connected";
-  readonly DISCONNECTED: "disconnected";
-  readonly ERRORED: "errored";
+export const ADAPTER_STATUS = {
+  NOT_READY: "not_ready",
+  READY: "ready",
+  CONNECTING: "connecting",
+  CONNECTED: "connected",
+  DISCONNECTED: "disconnected",
+  ERRORED: "errored",
+} as const;
+
+export const MULTI_CHAIN_ADAPTERS = {
+  OPENLOGIN: "openlogin",
+  WALLET_CONNECT_V1: "wallet-connect-v1",
+  WALLET_CONNECT_V2: "wallet-connect-v2",
 };
 
-export declare const WALLET_ADAPTERS: {
-  OPENLOGIN: string;
-  WALLET_CONNECT_V1: string;
-  WALLET_CONNECT_V2: string;
-  TORUS_SOLANA: string;
-  PHANTOM: string;
-  SOLFLARE: string;
-  SLOPE: string;
-  TORUS_EVM: string;
-  METAMASK: string;
-  COINBASE: string;
+export const SOLANA_ADAPTERS = {
+  TORUS_SOLANA: "torus-solana",
+  PHANTOM: "phantom",
+  SOLFLARE: "solflare",
+  SLOPE: "slope",
+  ...MULTI_CHAIN_ADAPTERS,
 };
 
-export declare const CHAIN_NAMESPACES: {
-  readonly EIP155: "eip155";
-  readonly SOLANA: "solana";
-  readonly OTHER: "other";
+export const EVM_ADAPTERS = {
+  TORUS_EVM: "torus-evm",
+  METAMASK: "metamask",
+  COINBASE: "coinbase",
+  ...MULTI_CHAIN_ADAPTERS,
 };
+
+export const WALLET_ADAPTERS = {
+  ...EVM_ADAPTERS,
+  ...SOLANA_ADAPTERS,
+};
+
+export const CHAIN_NAMESPACES = {
+  EIP155: "eip155",
+  SOLANA: "solana",
+  OTHER: "other",
+} as const;
 export class Web3AuthConnector extends Connector<SafeEventEmitterProvider, Options, Signer> {
   ready = !IS_SERVER;
 
